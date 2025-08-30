@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\SGBD\\IGCP-ML-Demo\\IGCP.ML.Demo\\IGCP.ML.Demo.csproj": {}
+  },
+  "projects": {
+    "F:\\SGBD\\IGCP-ML-Demo\\IGCP.ML.Demo\\IGCP.ML.Demo.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\SGBD\\IGCP-ML-Demo\\IGCP.ML.Demo\\IGCP.ML.Demo.csproj",
+        "projectName": "IGCP.ML.Demo",
+        "projectPath": "F:\\SGBD\\IGCP-ML-Demo\\IGCP.ML.Demo\\IGCP.ML.Demo.csproj",
+        "packagesPath": "C:\\Users\\Tony Sosa\\.nuget\\packages\\",
+        "outputPath": "F:\\SGBD\\IGCP-ML-Demo\\IGCP.ML.Demo\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Tony Sosa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.ML": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "Microsoft.ML.LightGbm": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

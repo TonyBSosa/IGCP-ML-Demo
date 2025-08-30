@@ -1,0 +1,4 @@
+student_id,course_id,term,credits,prereq_count,is_morning,is_online,lag_course_demand_t1,lag_student_load_t1
+201,BDII,2025-1,4,1,true,false,78,4
+201,REDI,2025-1,4,1,false,false,42,4
+202,BDII,2025-1,4,1,true,false,78,3
