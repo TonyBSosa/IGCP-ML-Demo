@@ -191,22 +191,38 @@ namespace IGCP.ML.Demo
                 predicted.Select(x => $"{x.student_id},{x.course_id},{x.term},{x.probability.ToString(CultureInfo.InvariantCulture)}"));
 
             // b) Demanda agregada por curso
-            var demand = predicted
-                .GroupBy(x => (x.course_id, x.term))
-                .Select(g => new
-                {
-                    g.Key.course_id,
-                    g.Key.term,
-                    expected_enrollment = g.Sum(v => v.probability)
-                })
-                .OrderByDescending(x => x.expected_enrollment)
-                .ToList();
+// b) Demanda agregada por curso
+var demand = predicted
+    .GroupBy(x => (x.course_id, x.term))
+    .Select(g => new
+    {
+        g.Key.course_id,
+        g.Key.term,
+        expected_enrollment = g.Sum(v => v.probability)
+    })
+    .OrderByDescending(x => x.expected_enrollment)
+    .ToList();
 
-            WriteCsv("demand_by_course.csv",
-                "course_id,term,expected_enrollment",
-                demand.Select(x => $"{x.course_id},{x.term},{x.expected_enrollment.ToString("F2", CultureInfo.InvariantCulture)}"));
+WriteCsv("demand_by_course.csv",
+    "course_id,term,expected_enrollment",
+    demand.Select(x => $"{x.course_id},{x.term},{x.expected_enrollment.ToString("F2", CultureInfo.InvariantCulture)}"));
 
-            Console.WriteLine("Listo ✅  Salidas: predictions_by_student.csv y demand_by_course.csv");
+// c) Plan de secciones (según capacidad y umbral mínimo)
+const int capacidad = 35;       // cupos por sección
+const int minimoApertura = 12;  // mínimo esperado para abrir una sección
+
+var sectionsPlan = demand.Select(x => new
+{
+    x.course_id, x.term, x.expected_enrollment,
+    sections_suggested = x.expected_enrollment < minimoApertura ? 0
+                         : (int)Math.Ceiling(x.expected_enrollment / capacidad)
+}).ToList();
+
+WriteCsv("sections_plan.csv",
+    "course_id,term,expected_enrollment,sections_suggested",
+    sectionsPlan.Select(x => $"{x.course_id},{x.term},{x.expected_enrollment.ToString("F2", CultureInfo.InvariantCulture)},{x.sections_suggested}"));
+
+Console.WriteLine("Listo ✅  Salidas: predictions_by_student.csv, demand_by_course.csv y sections_plan.csv");
         }
 
         static void WriteCsv(string path, string header, IEnumerable<string> rows)
